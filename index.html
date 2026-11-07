@@ -1,0 +1,473 @@
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>AI-навыки финансиста — предложение для ООО «Дихаус»</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #17213b;
+      --muted: #66718a;
+      --line: #e1e7f0;
+      --paper: #ffffff;
+      --canvas: #f5f7fb;
+      --indigo: #4338ca;
+      --teal: #0e7490;
+      --violet: #7c3aed;
+      --soft-indigo: #eef0ff;
+      --soft-teal: #eaf7fa;
+      --amber: #a75a0a;
+      --amber-bg: #fff5e8;
+      --green: #14734b;
+      --green-bg: #e9f7ef;
+      --red: #b42336;
+      --red-bg: #fff0f1;
+      --radius-sm: 12px;
+      --radius-md: 20px;
+      --radius-lg: 30px;
+      --shadow-card: 0 12px 34px rgba(24, 39, 75, .08);
+      --shadow-soft: 0 5px 18px rgba(24, 39, 75, .06);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 9% 2%, rgba(67, 56, 202, .09), transparent 26rem),
+        radial-gradient(ellipse at 95% 12%, rgba(14, 116, 144, .08), transparent 28rem),
+        var(--canvas);
+      font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+    .progress-track { position: fixed; inset: 0 0 auto; z-index: 20; height: 3px; background: transparent; }
+    .progress-bar { width: 0; height: 100%; background: linear-gradient(90deg, var(--indigo), var(--teal)); }
+    .site-header { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 26px 0 12px; }
+    .topline { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; color: var(--ink); text-decoration: none; font-weight: 800; letter-spacing: -.03em; }
+    .brand-mark { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 13px; color: #fff; background: linear-gradient(145deg, var(--indigo), var(--teal)); box-shadow: 0 7px 16px rgba(67, 56, 202, .22); }
+    .brand-mark svg { width: 21px; height: 21px; }
+    .header-note { color: var(--muted); font-size: 12px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .hero { position: relative; overflow: hidden; width: min(1180px, calc(100% - 48px)); margin: 24px auto 38px; padding: clamp(30px, 6vw, 72px); border: 1px solid rgba(255,255,255,.82); border-radius: var(--radius-lg); background: rgba(255,255,255,.84); box-shadow: var(--shadow-card); }
+    .hero::before, .hero::after { position: absolute; content: ""; border-radius: 50%; pointer-events: none; }
+    .hero::before { width: 340px; height: 340px; right: -120px; top: -160px; background: radial-gradient(circle, rgba(124,58,237,.12), transparent 68%); }
+    .hero::after { width: 260px; height: 260px; right: 15%; bottom: -190px; background: radial-gradient(circle, rgba(14,116,144,.12), transparent 70%); }
+    .hero-content { position: relative; z-index: 1; max-width: 850px; }
+    .eyebrow, .section-kicker { display: inline-flex; align-items: center; gap: 9px; color: var(--teal); font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { width: 24px; height: 2px; content: ""; background: currentColor; }
+    h1 { max-width: 830px; margin: 19px 0 18px; color: var(--indigo); font-size: clamp(2.5rem, 6.8vw, 5.2rem); line-height: 1.03; letter-spacing: -.065em; background: linear-gradient(110deg, #263b8f 8%, #5140c9 53%, #0e8492 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-subtitle { max-width: 690px; margin: 0; color: #4c5873; font-size: clamp(1rem, 2.2vw, 1.26rem); line-height: 1.7; }
+    .recipient { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 30px; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 9px 13px; border: 1px solid var(--line); border-radius: 999px; color: #45516d; background: rgba(255,255,255,.82); font-size: 13px; font-weight: 700; }
+    .pill svg { width: 15px; height: 15px; color: var(--indigo); }
+    .hero-bottom { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 22px; margin-top: 38px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .hero-bottom p { margin: 0; color: var(--muted); font-size: 13px; }
+    .hero-bottom strong { color: var(--ink); }
+    .toc { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc a { padding: 8px 12px; border-radius: 10px; color: #4b5874; background: #f1f3fa; text-decoration: none; font-size: 12px; font-weight: 700; transition: background .24s ease, color .24s ease, transform .24s ease; }
+    .toc a:hover { color: var(--indigo); background: #e7e9ff; transform: translateY(-2px); }
+    main { padding-bottom: 40px; }
+    .sheet { width: min(1180px, calc(100% - 48px)); margin: 0 auto 34px; padding: clamp(26px, 5vw, 58px); border: 1px solid rgba(255,255,255,.92); border-radius: var(--radius-lg); background: var(--paper); box-shadow: var(--shadow-soft); }
+    .section-heading { max-width: 780px; margin-bottom: 28px; }
+    .section-kicker { margin-bottom: 9px; }
+    h2 { margin: 0; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.15; letter-spacing: -.045em; }
+    .section-subtitle { margin: 12px 0 0; color: var(--muted); font-size: clamp(.94rem, 1.6vw, 1.08rem); }
+    h3 { margin: 0; font-size: 1.13rem; line-height: 1.35; letter-spacing: -.02em; }
+    p { margin-top: 0; }
+    .greeting { margin: 0 0 24px; padding: 18px 21px; border-left: 3px solid var(--indigo); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; color: #46516b; background: #f5f6ff; }
+    .greeting strong { color: var(--ink); }
+    .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 26px 0; }
+    .metric-card { padding: 20px; border: 1px solid var(--line); border-radius: var(--radius-md); background: linear-gradient(145deg, #fff, #f8f9fd); }
+    .metric-value { display: block; color: var(--indigo); font-size: clamp(1.65rem, 3vw, 2.35rem); font-weight: 800; line-height: 1.15; letter-spacing: -.06em; }
+    .metric-label { display: block; margin-top: 7px; color: var(--muted); font-size: 12px; font-weight: 700; }
+    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { position: relative; overflow: hidden; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fff; box-shadow: 0 2px 7px rgba(24,39,75,.025); transition: transform .36s cubic-bezier(.2,.75,.25,1), box-shadow .36s cubic-bezier(.2,.75,.25,1), border-color .3s ease; }
+    .card::before { position: absolute; inset: 0 0 auto; height: 3px; content: ""; opacity: 0; background: linear-gradient(90deg, var(--indigo), var(--teal)); transition: opacity .3s ease; }
+    .card:hover { transform: translateY(-6px); border-color: #c8cdf8; box-shadow: 0 18px 34px rgba(42,52,110,.12); }
+    .card:hover::before { opacity: 1; }
+    .card-icon { display: grid; width: 44px; height: 44px; margin-bottom: 17px; place-items: center; border-radius: 14px; color: var(--indigo); background: var(--soft-indigo); transition: transform .35s cubic-bezier(.2,.75,.25,1), color .3s ease, background .3s ease; }
+    .card:nth-child(3n+2) .card-icon { color: var(--teal); background: var(--soft-teal); }
+    .card:nth-child(3n) .card-icon { color: var(--violet); background: #f2edff; }
+    .card:hover .card-icon { transform: rotate(-5deg) scale(1.08); color: #fff; background: var(--indigo); }
+    .card-icon svg { width: 21px; height: 21px; }
+    .card p { margin: 9px 0 0; color: var(--muted); font-size: 13px; }
+    .scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-md); }
+    table { width: 100%; min-width: 760px; border-collapse: separate; border-spacing: 0; font-size: 13px; }
+    th, td { padding: 15px 16px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    thead th { color: #fff; background: #28345c; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    thead th:first-child { border-radius: 17px 0 0 0; }
+    thead th:last-child { border-radius: 0 17px 0 0; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:nth-child(even) { background: #f8f9fc; }
+    tbody tr:hover { background: #f0f4ff; }
+    td:first-child { font-weight: 800; }
+    .table-caption { margin: 12px 0 0; color: var(--muted); font-size: 12px; }
+    .note { margin-top: 18px; padding: 17px 19px; border: 1px solid #f0d4a9; border-radius: var(--radius-sm); color: #7f4b12; background: var(--amber-bg); font-size: 13px; }
+    .note strong { color: #683a08; }
+    .note.neutral { border-color: var(--line); color: #59647b; background: #f5f7fb; }
+    .case-block { position: relative; overflow: hidden; margin: 28px 0; padding: clamp(24px, 4vw, 42px); border-radius: 25px; color: #eef3ff; background: linear-gradient(128deg, #172449 0%, #303482 54%, #125d70 100%); box-shadow: 0 20px 42px rgba(24,36,86,.18); }
+    .case-block::after { position: absolute; width: 300px; height: 300px; top: -180px; right: -55px; content: ""; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; box-shadow: 0 0 0 34px rgba(255,255,255,.025), 0 0 0 70px rgba(255,255,255,.02); }
+    .case-title { position: relative; z-index: 1; max-width: 700px; margin: 0 0 22px; color: #fff; font-size: clamp(1.35rem, 3vw, 2rem); line-height: 1.25; letter-spacing: -.035em; }
+    .case-grid { position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .case-stat { padding: 18px; border: 1px solid rgba(255,255,255,.18); border-radius: 16px; background: rgba(255,255,255,.08); backdrop-filter: blur(8px); }
+    .case-number { display: block; color: #fff; font-size: clamp(1.8rem, 3.7vw, 2.65rem); font-weight: 800; line-height: 1.1; letter-spacing: -.06em; }
+    .case-number.currency { font-size: clamp(1.5rem, 3vw, 2.15rem); }
+    .case-stat p { margin: 7px 0 0; color: #d6def7; font-size: 12px; }
+    .case-block .scroll { color: var(--ink); background: #fff; }
+    .case-block tbody td:nth-child(2) { color: var(--indigo); font-size: 1.3rem; font-weight: 800; white-space: nowrap; }
+    .case-foot { position: relative; z-index: 1; margin: 19px 0 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.18); color: #d8e3f5; font-size: 12px; }
+    .status { display: inline-flex; padding: 4px 9px; border-radius: 999px; font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+    .status.ok { color: var(--green); background: var(--green-bg); }
+    .status.warn { color: var(--amber); background: var(--amber-bg); }
+    .status.risk { color: var(--red); background: var(--red-bg); }
+    .recommendation { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start; margin-top: 22px; padding: 22px; border: 1px solid #d7dafb; border-radius: var(--radius-md); background: linear-gradient(135deg, #f4f4ff, #f0fbfc); }
+    .recommendation-mark { display: grid; width: 42px; height: 42px; place-items: center; border-radius: 14px; color: #fff; background: linear-gradient(145deg, var(--indigo), var(--teal)); }
+    .recommendation-mark svg { width: 21px; height: 21px; }
+    .recommendation p { margin: 6px 0 0; color: #58637c; font-size: 13px; }
+    .tool-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .bonus-tools { margin-top: 14px; }
+    .tool-tag { display: flex; align-items: center; gap: 12px; min-height: 74px; padding: 14px; border: 1px solid var(--line); border-radius: 15px; background: #fff; transition: transform .3s cubic-bezier(.2,.75,.25,1), border-color .3s ease, box-shadow .3s ease; }
+    .tool-tag:hover { transform: translateY(-4px); border-color: #8c91e7; box-shadow: var(--shadow-soft); }
+    .tool-label { display: block; color: var(--teal); font-size: 9px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .tool-name { display: block; margin-top: 3px; font-size: 13px; font-weight: 800; }
+    .tool-symbol { display: grid; flex: 0 0 34px; width: 34px; height: 34px; place-items: center; border-radius: 11px; color: var(--indigo); background: var(--soft-indigo); font-size: 12px; font-weight: 800; }
+    .subsection { margin-top: 34px; }
+    .subsection-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 15px; }
+    .subsection-heading p { max-width: 560px; margin: 0; color: var(--muted); font-size: 12px; }
+    .price-total { color: var(--indigo); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 800; letter-spacing: -.05em; white-space: nowrap; }
+    .benefit-number { display: grid; width: 35px; height: 35px; margin-bottom: 18px; place-items: center; border-radius: 12px; color: var(--indigo); background: var(--soft-indigo); font-size: 13px; font-weight: 800; }
+    .benefit-card { min-height: 214px; }
+    .benefit-card:nth-child(2) .benefit-number, .benefit-card:nth-child(5) .benefit-number { color: var(--teal); background: var(--soft-teal); }
+    .module-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .module { padding: 21px; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fff; transition: transform .35s cubic-bezier(.2,.75,.25,1), box-shadow .35s ease, border-color .3s ease; }
+    .module:hover { transform: translateY(-5px); border-color: #c8cdf8; box-shadow: var(--shadow-card); }
+    .module-head { display: flex; align-items: start; gap: 13px; margin-bottom: 12px; }
+    .module-index { display: grid; flex: 0 0 34px; width: 34px; height: 34px; place-items: center; border-radius: 11px; color: #fff; background: linear-gradient(145deg, var(--indigo), var(--teal)); font-size: 11px; font-weight: 800; }
+    .module-head h3 { padding-top: 4px; }
+    .module ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .module li { position: relative; padding-left: 17px; color: #5d6880; font-size: 12px; line-height: 1.55; }
+    .module li::before { position: absolute; left: 0; top: .56em; width: 6px; height: 6px; content: ""; border-radius: 50%; background: #8991dc; }
+    .bonus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .bonus-highlight { margin-top: 20px; padding: clamp(20px, 3vw, 30px); border: 1px solid rgba(255,255,255,.15); border-radius: var(--radius-md); color: #fff; background: linear-gradient(125deg, #252c69, #4438a8 56%, #0e6478); box-shadow: 0 16px 34px rgba(37,44,105,.2); }
+    .bonus-highlight h3 { margin: 0 0 17px; color: #fff; font-size: clamp(1.15rem, 2.4vw, 1.5rem); }
+    .bonus-highlight-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
+    .bonus-highlight-item { display: flex; align-items: center; gap: 12px; min-height: 66px; padding: 13px 15px; border: 1px solid rgba(255,255,255,.2); border-radius: 14px; background: rgba(255,255,255,.09); color: #f5f7ff; font-size: 13px; font-weight: 700; }
+    .bonus-mark { display: grid; flex: 0 0 32px; width: 32px; height: 32px; place-items: center; border-radius: 10px; color: #fff; background: rgba(255,255,255,.17); font-size: 10px; font-weight: 800; }
+    .bonus-highlight-item a { color: #fff; text-decoration: underline; text-decoration-color: #a9eaf1; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+    .bonus-highlight-item a:hover { color: #b7f0f4; }
+    .bonus { display: flex; gap: 12px; padding: 17px; border: 1px solid var(--line); border-radius: 15px; background: linear-gradient(145deg, #fff, #fafbfe); }
+    .bonus .tool-symbol { flex: 0 0 34px; }
+    .bonus p { margin: 0; color: #56617a; font-size: 12px; }
+    .closing { width: min(1180px, calc(100% - 48px)); margin: 0 auto 34px; padding: clamp(27px, 4vw, 44px); border-radius: var(--radius-lg); color: #fff; background: linear-gradient(120deg, #263476, #38349a 55%, #0e6576); box-shadow: 0 18px 36px rgba(40,48,124,.18); }
+    .closing h2 { max-width: 720px; color: #fff; }
+    .closing-kicker { color: #b9c3ff; }
+    .closing p { max-width: 750px; margin: 13px 0 0; color: #dce4fb; }
+    .closing-step { display: inline-flex; margin-top: 22px; padding: 11px 16px; border: 1px solid rgba(255,255,255,.24); border-radius: 12px; color: #fff; background: rgba(255,255,255,.1); font-size: 13px; font-weight: 800; }
+    footer { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 0 0 34px; color: var(--muted); font-size: 12px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 18px; padding-top: 21px; border-top: 1px solid #dfe4ee; }
+    .footer-inner p { margin: 0; }
+    .signature { margin-top: 22px; }
+    .source-full { margin-top: 26px; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fbfcfe; }
+    .source-full > summary { padding: 17px 20px; color: var(--indigo); cursor: pointer; font-size: 14px; font-weight: 800; }
+    .source-copy { padding: 0 20px 22px; color: #47536c; font-size: 13px; }
+    .source-copy p { margin: 0 0 12px; }
+    .source-copy h4 { margin: 22px 0 9px; color: var(--ink); font-size: 15px; }
+    .source-copy ul { margin: 7px 0 16px; padding-left: 20px; }
+    .source-copy li { margin: 5px 0; }
+    .source-copy table { min-width: 0; font-size: 12px; }
+    .source-copy thead th { background: #34416b; }
+    .source-copy .scroll { margin: 9px 0 17px; }
+    @media (max-width: 900px) {
+      .card-grid, .tool-grid, .bonus-grid { grid-template-columns: repeat(2, 1fr); }
+      .benefit-card { min-height: 0; }
+    }
+    @media (max-width: 720px) {
+      .site-header, .hero, .sheet, .closing, footer { width: min(100% - 28px, 600px); }
+      .site-header { padding-top: 18px; }
+      .header-note { display: none; }
+      .hero { margin-top: 15px; margin-bottom: 18px; padding: 27px 22px; border-radius: 23px; }
+      .hero-bottom { align-items: start; flex-direction: column; margin-top: 28px; }
+      .toc { gap: 6px; }
+      .toc a { font-size: 11px; }
+      .sheet { margin-bottom: 18px; padding: 25px 20px; border-radius: 23px; }
+      .metric-grid, .card-grid, .case-grid, .tool-grid, .module-grid, .bonus-grid { grid-template-columns: 1fr; }
+      .bonus-highlight-grid { grid-template-columns: 1fr; }
+      .metric-grid { gap: 10px; }
+      .metric-card { padding: 16px; }
+      .case-block { padding: 23px 19px; }
+      .recommendation { grid-template-columns: 1fr; }
+      .subsection-heading { align-items: start; flex-direction: column; }
+      .footer-inner { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+    @media print {
+      @page { size: A4; margin: 12mm 10mm; }
+      *, *::before, *::after {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        box-shadow: none !important;
+        animation: none !important;
+        transition: none !important;
+      }
+      body { background: #fff !important; font-size: 9pt; line-height: 1.45; orphans: 3; widows: 3; }
+      .progress-track, .hero::before, .hero::after, .case-block::after { display: none !important; }
+      .hero, .sheet, .closing { width: 100%; margin: 0 0 4mm; border: 1px solid #d8deea; border-radius: 6mm; }
+      .hero { padding: 10mm; }
+      .sheet { padding: 7mm; page-break-before: always; break-before: page; page-break-inside: auto; break-inside: auto; }
+      .section-heading { margin-bottom: 12px; }
+      .subsection { margin-top: 14px; }
+      .subsection-heading { margin-bottom: 8px; page-break-after: avoid; break-after: avoid; }
+      p { margin-bottom: .35em; }
+      .module-grid { display: block; }
+      .module { margin: 0 0 4px; padding: 8px; page-break-inside: auto; break-inside: auto; }
+      #program .module-grid > .module:not(:last-child) { page-break-inside: avoid; break-inside: avoid; }
+      .module-head { margin-bottom: 6px; page-break-after: avoid; break-after: avoid; }
+      .module ul { gap: 3px; }
+      .module li { margin: 0 0 2px; font-size: 8pt; line-height: 1.25; page-break-inside: avoid; break-inside: avoid; }
+      .card { padding: 10px; }
+      .bonus-grid, .card-grid, .tool-grid, .metric-grid { gap: 5px; }
+      .bonus, .note, .recommendation, .metric-card { padding: 8px; }
+      .bonus-highlight { margin: 8px 0; padding: 12px; page-break-inside: avoid; break-inside: avoid; }
+      .bonus-highlight h3 { margin-bottom: 8px; page-break-after: avoid; break-after: avoid; }
+      .bonus-highlight-grid { gap: 6px; }
+      .bonus-highlight-item { min-height: 0; padding: 8px; }
+      #program > .subsection:last-of-type { margin-top: 10px; }
+      #program > .subsection:last-of-type .subsection-heading { margin-bottom: 5px; }
+      #program > .subsection:last-of-type p, #program > p { margin-bottom: 4px; font-size: 8pt; line-height: 1.3; }
+      .footer-inner { padding-top: 7px; }
+      .hero h1 { background: none !important; color: #263b8f !important; -webkit-text-fill-color: #263b8f !important; }
+      .metric-value, .case-number { background: none !important; -webkit-text-fill-color: #4338ca !important; color: #4338ca !important; }
+      .case-block { color: #eef3ff !important; background: linear-gradient(128deg, #172449 0%, #303482 54%, #125d70 100%) !important; print-color-adjust: exact !important; }
+      .case-block .case-number { color: #fff !important; -webkit-text-fill-color: #fff !important; }
+      .case-block .case-foot, .case-block .case-stat p { color: #d8e3f5 !important; }
+      .closing { color: #fff !important; background: linear-gradient(120deg, #263476, #38349a 55%, #0e6576) !important; }
+      .bonus-highlight { color: #fff !important; background: linear-gradient(125deg, #252c69, #4438a8 56%, #0e6478) !important; }
+      .bonus-highlight h3, .bonus-highlight-item, .bonus-highlight-item a { color: #fff !important; }
+      .closing h2, .closing p, .closing-step { color: #fff !important; }
+      .status.ok { color: #14734b !important; background: #e9f7ef !important; }
+      .status.warn { color: #a75a0a !important; background: #fff5e8 !important; }
+      .status.risk { color: #b42336 !important; background: #fff0f1 !important; }
+      tbody tr:nth-child(even) { background: #f2f4f8 !important; }
+      tbody tr:hover { background: inherit !important; }
+      table { min-width: 0 !important; width: 100% !important; }
+      table { font-size: 8pt; }
+      th, td { padding: 8px 7px; }
+      .scroll { overflow: visible !important; }
+      .scroll { border-radius: 4mm; }
+      thead { display: table-header-group; }
+      tr, .card, .tool-tag, .note, .case-stat, .metric-card, .bonus, .recommendation, .section-heading, .bonus-highlight-item { page-break-inside: avoid; break-inside: avoid; }
+      .case-block, .closing { page-break-inside: auto; break-inside: auto; }
+      .card, .tool-tag, .module { transform: none !important; }
+      .hero, .sheet, .closing { box-shadow: none !important; }
+      .toc a { color: #35416b !important; background: #f1f3fa !important; }
+      footer { width: 100%; }
+      .source-full { page-break-inside: auto; break-inside: auto; }
+      .source-full > summary { color: #17213b !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+  <header class="site-header">
+    <div class="topline">
+      <a class="brand" href="#top" aria-label="Мастер CFO — начало документа">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 18V6h3.4l4.6 6.2L16.6 6H20v12h-3V10.5l-5 6.2-5-6.2V18H4Z" fill="currentColor"/></svg></span>
+        <span>Мастер CFO</span>
+      </a>
+      <span class="header-note">Коммерческое предложение</span>
+    </div>
+  </header>
+
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-content">
+      <span class="eyebrow">Коммерческое предложение</span>
+      <h1 id="hero-title">Развитие финансового контроля и аналитики с помощью ИИ</h1>
+      <p class="hero-subtitle">Обучение двух сотрудников ООО «Дихаус» по программе «АИ-навыки финансиста», тариф «Профи»</p>
+      <div class="recipient">
+        <span class="pill">Генеральному директору Родный Юрию Алексеевичу</span>
+        <span class="pill">07.11.2026</span>
+        <span class="pill">Тариф «Профи»</span>
+      </div>
+      <div class="hero-bottom">
+        <p>ООО «Дихаус»</p>
+        <nav class="toc" aria-label="Разделы документа">
+          <a href="#proposal">Коммерческое предложение</a>
+          <a href="#advantages">Преимущества курса</a>
+          <a href="#program">Программа обучения</a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="sheet" id="proposal" aria-labelledby="proposal-title">
+      <div class="section-heading">
+        <span class="section-kicker">Коммерческое предложение</span>
+        <h2 id="proposal-title">Обучение команды ООО «Дихаус»</h2>
+        <p class="section-subtitle">Развитие финансового контроля и аналитики с помощью ИИ</p>
+      </div>
+      <p>Уважаемый Юрий Алексеевич!</p>
+      <p>Предлагаем обучение двух специалистов финансового блока ООО «Дихаус» с фокусом на одной из наиболее трудоемких задач компании: формировании полного финансового результата по 250 товарным линейкам, включая расчет чистой прибыли, на основе данных 1С и Excel. Цель обучения - освоить инструменты ИИ, которые помогут ускорить подготовку данных, проверки и аналитические процедуры, сохраняя ответственность специалистов за методологию и достоверность расчетов.</p>
+
+      <div class="subsection">
+        <div class="subsection-heading"><div><span class="section-kicker">01</span><h3>Для кого обучение и какой результат нужен</h3></div></div>
+        <div class="scroll"><table><thead><tr><th>Участник</th><th>Фокус применения знаний</th></tr></thead><tbody>
+          <tr><td>Набитовская Альбина Георгиевна, заместитель генерального директора по экономике и финансам</td><td>Методология финансового результата, управленческий анализ, бюджетирование, интерпретация отклонений и сценариев для решений руководства.</td></tr>
+          <tr><td>Бойченко Полина Алексеевна, ведущий финансовый контролер</td><td>Подготовка и сверка выгрузок 1С и Excel, контроль формул и классификации данных, повторяемые проверки и подготовка отчетных таблиц.</td></tr>
+        </tbody></table></div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-heading"><div><span class="section-kicker">02</span><h3>Что изменится в рабочих процессах</h3></div></div>
+        <div class="scroll"><table><thead><tr><th>Процесс</th><th>Сейчас</th><th>Ожидаемое применение навыков после обучения</th></tr></thead><tbody>
+          <tr><td>Подготовка исходных данных</td><td>Ручное сопоставление и очистка выгрузок</td><td>Создание воспроизводимых способов объединения и проверки данных с помощью ИИ-инструментов.</td></tr>
+          <tr><td>Расчет по 250 линейкам</td><td>Трудоемкие расчеты и сверки</td><td>Помощь ИИ в разработке формул, алгоритмов и контрольных проверок расчетной модели.</td></tr>
+          <tr><td>Полный финансовый результат</td><td>Необходимость учитывать прямые и косвенные расходы, налоговые и прочие статьи</td><td>Документирование логики расчета, проверка распределения затрат и сверка итогов с учетными данными.</td></tr>
+          <tr><td>План-факт и бюджетирование</td><td>Повторяющаяся консолидация и пояснения</td><td>Подготовка сравнений, сценариев и черновиков аналитических комментариев.</td></tr>
+          <tr><td>Отчетность руководству</td><td>Ручная подготовка сводок</td><td>Более оперативная подготовка таблиц, визуализаций и пояснений с обязательной проверкой специалистом.</td></tr>
+        </tbody></table></div>
+      </div>
+      <aside class="note"><strong>Важно:</strong> ИИ не определяет самостоятельно учетную политику, правила распределения косвенных расходов и расчет чистой прибыли. Эти решения остаются за финансовой командой. Обучение помогает освоить инструменты для реализации и проверки выбранной методологии.</aside>
+
+      <div class="subsection">
+        <div class="subsection-heading"><div><span class="section-kicker">03</span><h3>Почему рекомендуем тариф «Профи»</h3></div></div>
+        <p>Для задач ООО «Дихаус» нужен не только базовый навык общения с нейросетями, но и практическая работа с таблицами, финансовыми данными, формулами, моделями и аналитическими отчетами. Поэтому рекомендуем тариф «Профи», так как в нем есть обучение работе с Excel/CSV, FinAILab, Claude и финансовому моделированию.</p>
+        <p>Обучение двух сотрудников позволяет распределить внедрение: финансовый контролер выстраивает обработку и проверки данных, руководитель финансового направления определяет методологию, интерпретирует результаты и использует аналитику для управленческих решений.</p>
+      </div>
+
+      <article class="case-block">
+        <h3 class="case-title">04. Экономическая целесообразность</h3>
+        <p>Потенциальный эффект формируется за счет сокращения времени на повторяющиеся операции и возможности выполнять больше аналитической работы без пропорционального увеличения нагрузки. Для достоверного расчета окупаемости необходимы фактические трудозатраты по выбранным операциям и стоимость рабочего часа.</p>
+        <div class="scroll"><table><thead><tr><th>Сценарий</th><th>Условное сокращение времени на выбранные операции</th><th>Как считать эффект</th></tr></thead><tbody>
+          <tr><td>Консервативный</td><td>10%</td><td>Часы на операции × 10% × стоимость рабочего часа</td></tr>
+          <tr><td>Базовый</td><td>20%</td><td>Часы на операции × 20% × стоимость рабочего часа</td></tr>
+          <tr><td>Оптимистичный</td><td>30%</td><td>Часы на операции × 30% × стоимость рабочего часа</td></tr>
+        </tbody></table></div>
+        <p class="case-foot">Проценты приведены только как сценарные допущения, не как обещанный результат курса. Высвобожденное время само по себе не означает прямого снижения расходов на оплату труда.</p>
+      </article>
+
+      <div class="subsection">
+        <div class="subsection-heading"><div><span class="section-kicker">05</span><h3>Стоимость и корпоративные условия</h3></div></div>
+        <div class="scroll"><table><thead><tr><th>Показатель</th><th>Сумма</th></tr></thead><tbody>
+          <tr><td>Тариф «Профи», 1 сотрудник</td><td>59 990 ₽</td></tr>
+          <tr><td>Два сотрудника без скидки</td><td>119 980 ₽</td></tr>
+          <tr><td>Корпоративная скидка: 3 000 ₽ × 2</td><td>−6 000 ₽</td></tr>
+          <tr><td><strong>Итого за двух сотрудников</strong></td><td><strong>113 980 ₽</strong></td></tr>
+        </tbody></table></div>
+        <div class="bonus-highlight">
+          <h3>Для каждого участника предусмотрены бонусы</h3>
+          <div class="bonus-highlight-grid">
+            <div class="bonus-highlight-item"><span class="bonus-mark">01</span><span>Программа «Обезличиватель данных»</span></div>
+            <div class="bonus-highlight-item"><span class="bonus-mark">02</span><span>Запись эфира по AI-агентам</span></div>
+            <div class="bonus-highlight-item"><span class="bonus-mark">03</span><span><a href="https://aifinmodel.fin-academy.pro/" target="_blank" rel="noopener noreferrer">Курс «Финансовое моделирование»</a></span></div>
+            <div class="bonus-highlight-item"><span class="bonus-mark">04</span><span>Дополнительный год доступа к материалам (всего 24 месяца)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-heading"><div><span class="section-kicker">06</span><h3>Организация обучения и безопасность данных</h3></div></div>
+        <p>Исполнитель — онлайн-школа «Мастер CFO» (ИП Бурцева С. Д.), ИНН 560705976971, ОГРНИП 322631200070726; лицензия № Л035-01213-63/00977748 от 18.12.2023.</p>
+        <p>При работе с финансовой информацией необходимо соблюдать корпоративные правила конфиденциальности. Бонусная программа по обезличиванию данных может помочь освоить подходы к защите информации.</p>
+      </div>
+
+      <div class="recommendation">
+        <div class="recommendation-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m5 12 4.2 4.2L19 6.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><h3>07. Рекомендация руководителю</h3><p>Рекомендуем согласовать обучение Набитовской А. Г. и Бойченко П. А. по тарифу «Профи» на общую сумму 113 980 ₽. Обучение целесообразно рассматривать как развитие внутренних компетенций финансового блока: от подготовки и контроля данных до аналитики полного финансового результата по товарным линейкам. Это создаст основу для последующей оптимизации процессов без необоснованных обещаний мгновенной автоматизации.</p></div>
+      </div>
+    </section>
+
+    <section class="sheet" id="advantages" aria-labelledby="advantages-title">
+      <div class="section-heading">
+        <span class="section-kicker">Преимущества нашего курса</span>
+        <h2 id="advantages-title">Почему наш курс «AI-навыки финансиста» — лучшее решение</h2>
+        <p class="section-subtitle">Отличия от других программ по искусственному интеллекту</p>
+      </div>
+      <p>Наш курс принципиально отличается от общих программ по ИИ. Мы не учим «вообще нейросетям» — мы даём готовые инструменты для решения ежедневных финансовых задач и показываем, как применять их в работе прямо сейчас.</p>
+      <div class="card-grid">
+        <article class="card benefit-card"><span class="benefit-number">1</span><h3>Специализация на финансах, а не общие навыки</h3><p>Большинство курсов по ИИ дают универсальные знания: что такое нейросети, как писать промты, как генерировать тексты и картинки. Это полезно, но не решает задачи финансиста. Наш курс построен вокруг реальных финансовых задач: от нормализации выгрузок из 1С и банков до бюджетирования, план-факта, финмоделирования и управленческой отчётности. Вы не просто «узнаёте про ИИ» — вы сразу применяете его к своей работе.</p></article>
+        <article class="card benefit-card"><span class="benefit-number">2</span><h3>Практика на ваших данных, а не на учебных примерах</h3><p>Вместо абстрактных заданий вы работаете на своих реальных данных (обезличенных). Это означает, что вы не просто тренируетесь — вы в моменте решаете свои рабочие задачи и видите реальный результат. Курс окупается уже в процессе обучения, потому что вы начинаете экономить часы на рутине с первых модулей.</p></article>
+        <article class="card benefit-card"><span class="benefit-number">3</span><h3>Нейрокуратор + AI-портфолио вместо просто «сертификата»</h3><p>У нас есть уникальный нейрокуратор, который работает 24/7 и помогает вам на всех этапах обучения. Но главное — он автоматически формирует ваше портфолио из выполненных работ на ваших же данных.</p><p>В результате вы получаете не просто сертификат о прохождении (школа имеет лицензию Министерства образования РФ), а реальное портфолио, которое подтверждает ваши навыки. Это ваш козырь и на текущей работе, и при поиске новой — вы можете показать не «я прослушал курс», а «я сделал это на своих данных и получил такой результат».</p></article>
+        <article class="card benefit-card"><span class="benefit-number">4</span><h3>Авторские инструменты, которых нет в других курсах</h3><p>В курсе есть инструменты, которые вы не найдёте больше нигде:</p><ul><li>FinAILab — авторская лаборатория, которая за 15–40 минут анализирует ОДДС, Баланс и P&amp;L и выдаёт готовую аналитическую записку с графиками и выводами.</li><li>Промтогенератор — агент, который сам пишет промты под ваши задачи.</li><li>Агент управленческих решений — ИИ-ассистент, обученный на разборах сильнейших предпринимателей России.</li></ul></article>
+        <article class="card benefit-card"><span class="benefit-number">5</span><h3>Поддержка практиков, а не теоретиков</h3><p>Преподаватели сами ежедневно используют ИИ в финансах. Они не пересказывают теорию, а передают опыт, проверенный на реальных кейсах. В отличие от курсов, где спикеры «просто знакомы с темой», мы даём работающие инструменты.</p></article>
+      </div>
+      <article class="case-block">
+        <h3 class="case-title">Результат для вас</h3>
+        <p>Вы перестаёте тратить 70% времени на рутину (таблицы, выгрузки, сверки) и начинаете заниматься анализом, стратегией и управлением. Вы получаете не «знания про ИИ», а готовую систему, которая работает на вас.</p>
+      </article>
+      <p>Онлайн-школа «Мастер CFO» — практическое обучение для финансистов и бухгалтеров.</p>
+    </section>
+
+    <section class="sheet" id="program" aria-labelledby="program-title">
+      <div class="section-heading">
+        <span class="section-kicker">Приложение 1. Программа обучения</span>
+        <h2 id="program-title">К тарифу «Профи» курса «AI-навыки финансиста»</h2>
+        <p class="section-subtitle">Настоящая программа является неотъемлемым приложением к Коммерческому предложению.</p>
+      </div>
+      <p><strong>Общая длительность курса: 57 академических часов (1 академический час = 45 минут). Программа включает 10 модулей, объединяющих более 75 практических уроков.</strong></p>
+      <div class="subsection">
+        <div class="subsection-heading"><div><span class="section-kicker">1. Общие положения</span><h3>Последовательное освоение программы</h3></div></div>
+        <p>Программа разработана авторами школы и защищена авторским правом. Обучение включает 10 модулей, объединяющих более 75 практических уроков, и рассчитано на последовательное освоение: от базовых навыков работы с нейросетями до создания сложных финансовых инструментов и ИИ-агентов.</p>
+      </div>
+      <div class="subsection">
+        <div class="subsection-heading"><div><span class="section-kicker">2. Структура программы</span><h3>Модули и практические уроки</h3></div></div>
+        <div class="module-grid">
+          <article class="module"><div class="module-head"><span class="module-index">1</span><h3>База эффективной работы с нейросетями</h3></div><ul><li>Как нейросети входят в повседневную жизнь финансиста</li><li>Промт-инжиниринг: правила, техники, приёмы</li><li>Сила последовательных промтов для решения сложных задач</li><li>Безопасность данных при работе с нейросетями</li><li>Как монетизировать навыки работы с ИИ</li><li>Что будет с нейросетями через 10 лет</li></ul></article>
+          <article class="module"><div class="module-head"><span class="module-index">2</span><h3>Техническая база работы с нейросетями</h3></div><ul><li>Google Apps Script: автоматизация таблиц и документов</li><li>HTML-разметка для создания документов и писем</li><li>Что такое API и как с ним работать</li><li>Создание GPT-агентов</li></ul></article>
+          <article class="module"><div class="module-head"><span class="module-index">3</span><h3>Оптимизация работы с документами</h3></div><ul><li>Работа с различными форматами данных (Excel, CSV, Google Sheets)</li><li>Транскрибация: конспекты, протоколы совещаний</li><li>Работа с шаблонами документов</li><li>Создание документов по скрипту</li><li>Работа с письмами и нормативно-правовой базой</li><li>Проверка договоров, выявление рисков</li><li>Написание регламентов с помощью ИИ</li></ul></article>
+          <article class="module"><div class="module-head"><span class="module-index">4</span><h3>Прикладное применение ИИ в работе финансиста</h3></div><ul><li>Написание сложных формул в Excel через промты</li><li>Нормализация и подготовка данных</li><li>Разработка систем мотивации</li><li>Ценообразование и калькуляторы</li><li>Оценка стоимости компаний методом DCF</li><li>Глубинное исследование (Deep Research)</li></ul></article>
+          <article class="module"><div class="module-head"><span class="module-index">5</span><h3>Работа с Google-таблицами: от интеграции данных до дашбордов</h3></div><ul><li>Сквозные списки для справочников</li><li>Создание дашбордов</li><li>Разнесение банковской выписки</li><li>Расчёт заработной платы и мотивации</li><li>Передача данных по API из Google Таблиц в сервисы финучёта</li></ul></article>
+          <article class="module"><div class="module-head"><span class="module-index">6</span><h3>Автоматизация процессов учёта</h3></div><ul><li>Управление проектами автоматизации</li><li>Помощь в выборе конфигурации 1С</li><li>Обработка наличных платежей с помощью Telegram-ботов</li><li>Онбординг сотрудников при внедрении учёта</li><li>Учёт наличных средств с помощью веб-сервисов</li></ul></article>
+          <article class="module"><div class="module-head"><span class="module-index">7</span><h3>Бюджетирование с помощью нейросетей</h3></div><ul><li>Бюджетирование с нуля с помощью нейросетей</li><li>Проверка бюджета и расчёт плана</li><li>Создание ИИ-агента для проверки бюджетов ЦФО</li></ul></article>
+          <article class="module"><div class="module-head"><span class="module-index">8</span><h3>Финансовый анализ (FinAILab)</h3></div><ul><li>Разница между простым анализом в нейросети и FinAILab</li><li>Подготовка данных для FinAILab</li><li>Экскурсия по FinAILab: анализ ОДДС, Баланса и P&amp;L за 15–40 минут</li></ul></article>
+          <article class="module"><div class="module-head"><span class="module-index">9</span><h3>Маркетинг, копирайтинг, контент</h3></div><ul><li>Использование ИИ в маркетинге, контенте и продажах</li><li>Анализ целевой аудитории, конкурентов и офферов</li><li>Генерация оригинального контента: посты, статьи</li><li>Создание вирусных сценариев для коротких видео</li><li>Обучение нейросети вашему стилю письма</li><li>Создание визуального контента (баннеры, инфографика)</li><li>Генерация видео, нейрофото и презентаций</li><li>Создание сайта-визитки с помощью ИИ</li></ul></article>
+          <article class="module"><div class="module-head"><span class="module-index">11</span><h3>Claude для финансиста (НОВЫЙ)</h3></div><p>Доступен на тарифе «Профи» — все промпты и учебные файлы внутри уроков.</p><ul><li>Освоить среду Claude: интерфейс, проекты, артефакты, настройки, коннекторы, системная инструкция</li><li>Claude Desktop: отличие Chat, Cowork и Code, работа с папками и файлами на компьютере</li><li>Модели, лимиты, тарифы: Opus, Sonnet, Haiku, токены, уровни усилий, выбор тарифа</li><li>Claude Design: прототипы, презентации, шаблоны, дизайн-системы, создание по референсу</li><li>Работа с текстами и нормализация данных: протокол из стенограммы, ответ на требование ФНС, проверка договора</li><li>Claude внутри Excel: надстройка, автоматизация расчётов, создание дашбордов</li><li>Бюджетирование и финансовые модели: расчёт плана из факта, консолидация ЦФО, сценарии, модель DCF</li><li>Консолидация отчётности и дашборды: свод нескольких Excel-отчётов, HTML-дашборд, обработка первичных документов</li></ul></article>
+        </div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-heading"><div><span class="section-kicker">3. Дополнительные инструменты и бонусы</span><h3>Инструменты и условия тарифа</h3></div></div>
+        <div class="bonus-grid">
+          <article class="bonus"><span class="tool-symbol">F</span><p>FinAILab — лаборатория финансового анализа на базе нейросетей (готовый анализ по трём отчётам за 15–40 минут).</p></article>
+          <article class="bonus"><span class="tool-symbol">П</span><p>Промтогенератор — агент для создания эффективных запросов к нейросетям.</p></article>
+          <article class="bonus"><span class="tool-symbol">УР</span><p>Агент управленческих решений — ИИ-ассистент по разборам ведущих предпринимателей.</p></article>
+          <article class="bonus"><span class="tool-symbol">5</span><p>5 еженедельных Zoom-встреч с авторами курса и кураторами.</p></article>
+          <article class="bonus"><span class="tool-symbol">12</span><p>Доступ к материалам на 12 месяцев.</p></article>
+          <article class="bonus"><span class="tool-symbol">AI</span><p>Новый модуль по Claude — все инструменты и сценарии для эффективной работы с этой нейросетью.</p></article>
+        </div>
+      </div>
+      <div class="subsection">
+        <div class="subsection-heading"><div><span class="section-kicker">4. Условия сертификации</span><h3>Сертификат о прохождении программы</h3></div></div>
+        <p>По итогам успешного освоения всех 10 модулей участник получает сертификат о прохождении программы с указанием тарифа «Профи». Сертификат выдаётся при условии выполнения практических заданий и прохождения итоговой аттестации.</p>
+      </div>
+      <p>© Онлайн-школа «Мастер CFO»</p>
+      <p>Данная программа является интеллектуальной собственностью и защищена авторским правом. Копирование, распространение или использование материалов без письменного согласия правообладателя запрещено.</p>
+      <p><strong>Актуально на 30 июля 2026 г.</strong> · Программа может дополняться новыми уроками в рамках обновлений курса. Доступ к материалам на 12 месяцев.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner"><p>С уважением, команда онлайн-школы «Мастер CFO»</p></div>
+  </footer>
+  <script>
+    const progressBar = document.getElementById('progressBar');
+    const updateProgress = () => {
+      const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = pageHeight > 0 ? (window.scrollY / pageHeight) * 100 : 0;
+      progressBar.style.width = `${progress}%`;
+    };
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+  </script>
+</body>
+</html>
